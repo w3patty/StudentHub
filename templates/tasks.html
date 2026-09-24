@@ -1,0 +1,325 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Задания — StudentHub
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="tasks-page">
+
+
+    <!-- ======================================
+         ЗАГОЛОВОК
+    ======================================= -->
+
+    <div class="page-head">
+
+        <div>
+
+            <div class="badge">
+                ✦ Учебный план
+            </div>
+
+            <h1>
+                Мои задания
+            </h1>
+
+            <p>
+                Добавляй задания и отмечай их
+                после выполнения.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ======================================
+         ДОБАВЛЕНИЕ ЗАДАНИЯ
+    ======================================= -->
+
+    <section class="add-task-card">
+
+        <h2>
+            Добавить задание
+        </h2>
+
+
+        <form
+            method="POST"
+            action="/tasks/add"
+            class="task-form">
+
+
+            <div class="form-group">
+
+                <label for="title">
+                    Задание
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Например: сделать лабораторную работу"
+                    required>
+
+            </div>
+
+
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label for="subject">
+                        Предмет
+                    </label>
+
+                    <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        placeholder="Например: Python">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="deadline">
+                        Дедлайн
+                    </label>
+
+                    <input
+                        type="date"
+                        id="deadline"
+                        name="deadline">
+
+                </div>
+
+
+            </div>
+
+
+
+            <button
+                type="submit"
+                class="full-btn">
+
+                + Добавить задание
+
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+
+    <!-- ======================================
+         СПИСОК ЗАДАНИЙ
+    ======================================= -->
+
+    <section class="tasks-section">
+
+
+        <div class="section-head">
+
+            <h2>
+                Список заданий
+            </h2>
+
+            <span>
+                {{ tasks|length }} заданий
+            </span>
+
+        </div>
+
+
+
+        {% if tasks %}
+
+
+            <div class="tasks-list">
+
+
+                {% for task in tasks %}
+
+
+                    <div
+                        class="
+                            task-item
+
+                            {% if task['completed'] %}
+                                completed
+                            {% endif %}
+                        ">
+
+
+                        <!-- ЛЕВАЯ ЧАСТЬ -->
+
+                        <div class="task-main">
+
+
+                            <div class="task-check">
+
+                                {% if task['completed'] %}
+
+                                    ✓
+
+                                {% else %}
+
+                                    ○
+
+                                {% endif %}
+
+                            </div>
+
+
+
+                            <div>
+
+                                <h3>
+                                    {{ task['title'] }}
+                                </h3>
+
+
+                                <div class="task-meta">
+
+
+                                    {% if task['subject'] %}
+
+                                        <span>
+                                            📚
+                                            {{ task['subject'] }}
+                                        </span>
+
+                                    {% endif %}
+
+
+
+                                    {% if task['deadline'] %}
+
+                                        <span>
+                                            📅
+                                            {{ task['deadline'] }}
+                                        </span>
+
+                                    {% endif %}
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- ПРАВАЯ ЧАСТЬ -->
+
+                        <div class="task-actions">
+
+
+                            <!-- ВЫПОЛНИТЬ -->
+
+                            <form
+                                method="POST"
+                                action="/tasks/complete/{{ task['id'] }}">
+
+                                <button
+                                    type="submit"
+                                    class="small-btn complete-btn">
+
+                                    {% if task['completed'] %}
+
+                                        Вернуть
+
+                                    {% else %}
+
+                                        Выполнить
+
+                                    {% endif %}
+
+                                </button>
+
+                            </form>
+
+
+
+                            <!-- УДАЛИТЬ -->
+
+                            <form
+                                method="POST"
+                                action="/tasks/delete/{{ task['id'] }}">
+
+                                <button
+                                    type="submit"
+                                    class="small-btn delete-btn">
+
+                                    Удалить
+
+                                </button>
+
+                            </form>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <!-- ПУСТОЕ СОСТОЯНИЕ -->
+
+            <div class="empty-state large-empty">
+
+                <div class="empty-icon">
+                    📚
+                </div>
+
+
+                <h3>
+                    У тебя пока нет заданий
+                </h3>
+
+
+                <p>
+                    Добавь первое задание выше.
+                    После выполнения прогресс
+                    автоматически обновится.
+                </p>
+
+
+            </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+</div>
+
+
+{% endblock %}

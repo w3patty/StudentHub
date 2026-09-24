@@ -1,0 +1,496 @@
+{% extends "base.html" %}
+
+{% block title %}
+Заработок — StudentHub
+{% endblock %}
+
+{% block content %}
+
+<section class="earn-page">
+
+    <div class="earn-hero">
+
+        <div class="earn-hero-content">
+
+            <div class="earn-badge">
+                💡 Возможности для тебя
+            </div>
+
+            <h1>
+                Найди способ
+                <span>заработать</span>
+                на своих навыках
+            </h1>
+
+            <p>
+                Выбирай направление, развивай навыки,
+                создавай проекты и постепенно собирай
+                своё портфолио.
+            </p>
+
+        </div>
+
+        <div class="earn-hero-icon">
+            💰
+        </div>
+
+    </div>
+
+
+    <div class="earn-info">
+
+        <div class="earn-info-item">
+            <span>🎯</span>
+            <div>
+                <strong>Выбери направление</strong>
+                <small>Найди то, что тебе интересно</small>
+            </div>
+        </div>
+
+        <div class="earn-info-item">
+            <span>📚</span>
+            <div>
+                <strong>Развивай навыки</strong>
+                <small>Учись и создавай реальные проекты</small>
+            </div>
+        </div>
+
+        <div class="earn-info-item">
+            <span>🚀</span>
+            <div>
+                <strong>Создавай портфолио</strong>
+                <small>Показывай свои работы</small>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="earn-section-head">
+
+        <div>
+            <h2>
+                Возможности
+            </h2>
+
+            <p>
+                Выбери категорию и посмотри подходящие направления.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="earn-filters">
+
+        <button
+            class="earn-filter active"
+            data-category="all"
+            type="button"
+        >
+            Все
+        </button>
+
+        <button
+            class="earn-filter"
+            data-category="IT"
+            type="button"
+        >
+            💻 IT
+        </button>
+
+        <button
+            class="earn-filter"
+            data-category="Дизайн"
+            type="button"
+        >
+            🎨 Дизайн
+        </button>
+
+        <button
+            class="earn-filter"
+            data-category="AI"
+            type="button"
+        >
+            🤖 AI
+        </button>
+
+        <button
+            class="earn-filter"
+            data-category="Образование"
+            type="button"
+        >
+            📚 Образование
+        </button>
+
+        <button
+            class="earn-filter"
+            data-category="Контент"
+            type="button"
+        >
+            ✍️ Контент
+        </button>
+
+        <button
+            class="earn-filter"
+            data-category="Проекты"
+            type="button"
+        >
+            🚀 Проекты
+        </button>
+
+    </div>
+
+
+    <div class="earn-grid">
+
+        {% for item in opportunities %}
+
+        <article
+            class="earn-card"
+            data-category="{{ item.category }}"
+        >
+
+            <div class="earn-card-top">
+
+                <div class="earn-card-icon">
+                    {{ item.icon }}
+                </div>
+
+                <span class="earn-category">
+                    {{ item.category }}
+                </span>
+
+            </div>
+
+
+            <h3>
+                {{ item.title }}
+            </h3>
+
+            <p class="earn-description">
+                {{ item.description }}
+            </p>
+
+
+            <div class="earn-details">
+
+                <div class="earn-detail">
+                    <span>📈</span>
+                    <div>
+                        <small>Уровень</small>
+                        <strong>{{ item.level }}</strong>
+                    </div>
+                </div>
+
+                <div class="earn-detail">
+                    <span>🛠️</span>
+                    <div>
+                        <small>Навыки</small>
+                        <strong>{{ item.skills }}</strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="earn-card-bottom">
+
+                <span class="earn-income">
+                    💰 {{ item.income }}
+                </span>
+
+                <button
+                    class="earn-more"
+                    type="button"
+                    onclick="showEarnInfo(
+                        '{{ item.title }}',
+                        '{{ item.description }}'
+                    )"
+                >
+                    Подробнее →
+                </button>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="earn-empty" id="earnEmpty">
+
+        <div>
+            🔍
+        </div>
+
+        <h3>
+            Ничего не найдено
+        </h3>
+
+        <p>
+            Попробуй выбрать другую категорию.
+        </p>
+
+    </div>
+
+
+    <div class="earn-bottom">
+
+        <div class="earn-bottom-icon">
+            🤖
+        </div>
+
+        <div class="earn-bottom-content">
+
+            <h2>
+                Не знаешь, с чего начать?
+            </h2>
+
+            <p>
+                Спроси AI-помощника StudentHub,
+                какие навыки тебе стоит развивать
+                и какие проекты можно создать.
+            </p>
+
+        </div>
+
+        <a
+            href="/ai"
+            class="earn-ai-button"
+        >
+            Спросить AI →
+        </a>
+
+    </div>
+
+</section>
+
+
+<div
+    class="earn-modal"
+    id="earnModal"
+>
+
+    <div class="earn-modal-window">
+
+        <button
+            class="earn-modal-close"
+            type="button"
+            onclick="closeEarnInfo()"
+        >
+            ×
+        </button>
+
+        <div
+            class="earn-modal-icon"
+            id="earnModalIcon"
+        >
+            💡
+        </div>
+
+        <h2 id="earnModalTitle">
+            Возможность
+        </h2>
+
+        <p id="earnModalDescription">
+        </p>
+
+        <div class="earn-modal-note">
+            💡 Начни с небольшого проекта,
+            собери опыт и постепенно усложняй задачи.
+        </div>
+
+        <a
+            href="/ai"
+            class="earn-modal-button"
+        >
+            Обсудить с AI →
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const filters =
+            document.querySelectorAll(
+                ".earn-filter"
+            );
+
+        const cards =
+            document.querySelectorAll(
+                ".earn-card"
+            );
+
+        const empty =
+            document.getElementById(
+                "earnEmpty"
+            );
+
+
+        filters.forEach(function (filter) {
+
+            filter.addEventListener(
+                "click",
+                function () {
+
+                    filters.forEach(
+                        function (button) {
+                            button.classList.remove(
+                                "active"
+                            );
+                        }
+                    );
+
+                    filter.classList.add(
+                        "active"
+                    );
+
+                    const category =
+                        filter.dataset.category;
+
+                    let visible = 0;
+
+
+                    cards.forEach(
+                        function (card) {
+
+                            if (
+                                category === "all"
+                                ||
+                                card.dataset.category === category
+                            ) {
+
+                                card.style.display =
+                                    "block";
+
+                                visible++;
+
+                            } else {
+
+                                card.style.display =
+                                    "none";
+
+                            }
+
+                        }
+                    );
+
+
+                    if (visible === 0) {
+
+                        empty.style.display =
+                            "block";
+
+                    } else {
+
+                        empty.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+        });
+
+    }
+);
+
+
+function showEarnInfo(
+    title,
+    description
+) {
+
+    const modal =
+        document.getElementById(
+            "earnModal"
+        );
+
+    const modalTitle =
+        document.getElementById(
+            "earnModalTitle"
+        );
+
+    const modalDescription =
+        document.getElementById(
+            "earnModalDescription"
+        );
+
+
+    modalTitle.textContent =
+        title;
+
+    modalDescription.textContent =
+        description;
+
+    modal.classList.add(
+        "show"
+    );
+
+}
+
+
+function closeEarnInfo() {
+
+    const modal =
+        document.getElementById(
+            "earnModal"
+        );
+
+    modal.classList.remove(
+        "show"
+    );
+
+}
+
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const modal =
+            document.getElementById(
+                "earnModal"
+            );
+
+        if (
+            event.target === modal
+        ) {
+
+            closeEarnInfo();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeEarnInfo();
+
+        }
+
+    }
+);
+
+</script>
+
+{% endblock %}

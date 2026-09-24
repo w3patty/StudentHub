@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StudentHub — План учёбы</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <a href="/" class="logo">
+        Student<span>Hub</span>
+    </a>
+
+
+    <nav>
+
+        <a href="/">
+            Главная
+        </a>
+
+        <a href="/dashboard">
+            Кабинет
+        </a>
+
+        <a href="/tasks">
+            Задания
+        </a>
+
+        <a href="/ai">
+            AI-планировщик
+        </a>
+
+    </nav>
+
+
+    <a href="/dashboard"
+       class="login-btn">
+
+        👤 Никита
+
+    </a>
+
+</header>
+
+
+
+<main class="plan-page">
+
+
+    <section class="plan-header">
+
+
+        <div class="success-icon">
+            ✨
+        </div>
+
+
+        <div>
+
+            <div class="badge">
+                AI Study Planner
+            </div>
+
+
+            <h1>
+
+                Твой персональный
+                <span>план учёбы</span>
+
+            </h1>
+
+
+            <p>
+
+                ИИ проанализировал твои задания
+                и распределил их по приоритету.
+
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <section class="plan-summary">
+
+
+        <div class="summary-card">
+
+            <span>
+                📚 Заданий
+            </span>
+
+            <strong>
+                3
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <span>
+                ⏱ Времени сегодня
+            </span>
+
+            <strong>
+                2 часа
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <span>
+                🔥 Приоритетных
+            </span>
+
+            <strong>
+                2
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <span>
+                📊 Нагрузка
+            </span>
+
+            <strong class="normal">
+                Нормальная
+            </strong>
+
+        </div>
+
+
+    </section>
+
+
+
+    <section class="plan-layout">
+
+
+        <div class="plan-card">
+
+
+            <div class="plan-card-header">
+
+
+                <div>
+
+                    <span class="today">
+                        СЕГОДНЯ
+                    </span>
+
+
+                    <h2>
+                        Учебный план
+                    </h2>
+
+                </div>
+
+
+                <span class="time-badge">
+                    2 часа
+                </span>
+
+
+            </div>
+
+
+
+            <div class="study-task priority">
+
+
+                <div class="study-time">
+                    18:00
+                </div>
+
+
+                <div class="study-line"></div>
+
+
+                <div class="study-content">
+
+
+                    <div class="study-icon">
+                        📐
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Подготовка к контрольной
+                        </h3>
+
+                        <p>
+                            Математика
+                        </p>
+
+                        <span class="reason">
+                            🔥 Дедлайн через 2 дня
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="study-task">
+
+
+                <div class="study-time">
+                    19:10
+                </div>
+
+
+                <div class="study-line"></div>
+
+
+                <div class="study-content">
+
+
+                    <div class="study-icon">
+                        💻
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Практическая работа
+                        </h3>
+
+                        <p>
+                            Программирование
+                        </p>
+
+                        <span class="reason">
+                            Дедлайн через 4 дня
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="study-task">
+
+
+                <div class="study-time">
+                    20:00
+                </div>
+
+
+                <div class="study-line"></div>
+
+
+                <div class="study-content">
+
+
+                    <div class="study-icon">
+                        🇬🇧
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Подготовить презентацию
+                        </h3>
+
+                        <p>
+                            Английский язык
+                        </p>
+
+                        <span class="reason">
+                            Дедлайн через 7 дней
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <aside class="recommendation-card">
+
+
+            <div class="recommendation-icon">
+                🤖
+            </div>
+
+
+            <h2>
+                Рекомендация ИИ
+            </h2>
+
+
+            <p>
+
+                Сегодня лучше начать
+                с математики, потому что
+                контрольная имеет ближайший
+                дедлайн.
+
+            </p>
+
+
+            <div class="tip">
+
+                💡
+
+                <span>
+
+                    После математики сделай
+                    небольшой перерыв перед
+                    программированием.
+
+                </span>
+
+            </div>
+
+
+            <button
+                class="primary-btn"
+                onclick="finishPlan()">
+
+                Начать выполнение →
+
+            </button>
+
+
+        </aside>
+
+
+    </section>
+
+
+
+    <div class="plan-actions">
+
+        <a href="/tasks"
+           class="secondary-btn">
+
+            ← Вернуться к заданиям
+
+        </a>
+
+
+        <a href="/dashboard"
+           class="primary-btn">
+
+            Перейти в кабинет →
+
+        </a>
+
+    </div>
+
+
+
+    <section class="next-days">
+
+
+        <h2>
+            План на следующие дни
+        </h2>
+
+
+        <div class="day-list">
+
+
+            <div class="day">
+
+                <strong>
+                    Пятница
+                </strong>
+
+                <span>
+                    Математика • 1 час
+                </span>
+
+            </div>
+
+
+            <div class="day">
+
+                <strong>
+                    Суббота
+                </strong>
+
+                <span>
+                    Программирование • 2 часа
+                </span>
+
+            </div>
+
+
+            <div class="day">
+
+                <strong>
+                    Воскресенье
+                </strong>
+
+                <span>
+                    Английский • 1 час
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script>
+
+function finishPlan() {
+
+    alert(
+        "Отлично! План начат. Удачи в учёбе! 🚀"
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

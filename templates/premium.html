@@ -1,0 +1,345 @@
+{% extends "base.html" %}
+
+{% block title %}
+Premium — StudentHub
+{% endblock %}
+
+{% block content %}
+
+<section class="premium-page">
+
+    <div class="premium-hero">
+
+        <div class="premium-badge">
+            ✦ STUDENTHUB PREMIUM
+        </div>
+
+        <h1>
+            Учись больше.
+            <span>Получай больше.</span>
+        </h1>
+
+        <p>
+            Расширь возможности StudentHub
+            и получи больше инструментов
+            для обучения.
+        </p>
+
+    </div>
+
+
+    {% if user["premium"] %}
+
+    <div class="premium-active">
+
+        <div class="premium-active-icon">
+            ✨
+        </div>
+
+        <div>
+            <h2>
+                Premium активирован
+            </h2>
+
+            <p>
+                Тебе доступны расширенные возможности StudentHub.
+            </p>
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+    <div class="premium-plans">
+
+
+        <!-- FREE -->
+
+        <div class="premium-plan">
+
+            <div class="premium-plan-name">
+                FREE
+            </div>
+
+            <h2>
+                Бесплатно
+            </h2>
+
+            <div class="premium-price">
+                0 ₸
+            </div>
+
+            <p class="premium-subtitle">
+                Основные возможности
+            </p>
+
+            <ul>
+
+                <li>
+                    <span>✓</span>
+                    Личный кабинет
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Система заданий
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Отслеживание прогресса
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Базовый AI
+                </li>
+
+                <li class="disabled">
+                    <span>×</span>
+                    Расширенный AI
+                </li>
+
+                <li class="disabled">
+                    <span>×</span>
+                    Персональный план
+                </li>
+
+            </ul>
+
+            <div class="premium-current">
+                Базовый тариф
+            </div>
+
+        </div>
+
+
+        <!-- PREMIUM -->
+
+        <div class="premium-plan premium-featured">
+
+            <div class="premium-popular">
+                PREMIUM
+            </div>
+
+            <div class="premium-plan-name">
+                STUDENTHUB
+            </div>
+
+            <h2>
+                Premium
+            </h2>
+
+            <div class="premium-price">
+                2 990 ₸
+                <small>/ месяц</small>
+            </div>
+
+            <p class="premium-subtitle">
+                Расширенные возможности обучения
+            </p>
+
+            <ul>
+
+                <li>
+                    <span>✓</span>
+                    Всё из бесплатного тарифа
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Расширенный AI-помощник
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Персональный план обучения
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Анализ ошибок
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Дополнительные материалы
+                </li>
+
+                <li>
+                    <span>✓</span>
+                    Новые Premium-функции
+                </li>
+
+            </ul>
+
+
+            {% if user["premium"] %}
+
+            <div class="premium-current premium-current-active">
+                ✨ Premium активен
+            </div>
+
+            {% else %}
+
+            <form
+                action="/premium/activate"
+                method="POST"
+            >
+
+                <button
+                    type="submit"
+                    class="premium-button"
+                >
+                    Подключить Premium →
+                </button>
+
+            </form>
+
+            <p class="premium-test-note">
+                Тестовая активация — деньги не списываются
+            </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- BENEFITS -->
+
+    <div class="premium-benefits">
+
+        <h2>
+            Возможности Premium
+        </h2>
+
+        <div class="premium-benefit-grid">
+
+            <div class="premium-benefit">
+
+                <div>🤖</div>
+
+                <h3>
+                    Расширенный AI
+                </h3>
+
+                <p>
+                    Больше возможностей
+                    для подготовки и обучения.
+                </p>
+
+            </div>
+
+
+            <div class="premium-benefit">
+
+                <div>🎯</div>
+
+                <h3>
+                    Персональный план
+                </h3>
+
+                <p>
+                    Создание индивидуального
+                    плана обучения.
+                </p>
+
+            </div>
+
+
+            <div class="premium-benefit">
+
+                <div>📊</div>
+
+                <h3>
+                    Аналитика
+                </h3>
+
+                <p>
+                    Следи за прогрессом
+                    и находи слабые темы.
+                </p>
+
+            </div>
+
+
+            <div class="premium-benefit">
+
+                <div>⚡</div>
+
+                <h3>
+                    Новые функции
+                </h3>
+
+                <p>
+                    Premium-функции будут
+                    добавляться постепенно.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FAQ -->
+
+    <div class="premium-faq">
+
+        <h2>
+            Частые вопросы
+        </h2>
+
+        <div class="premium-faq-item">
+
+            <h3>
+                Что входит в Premium?
+            </h3>
+
+            <p>
+                Расширенные AI-функции,
+                персональные планы,
+                дополнительная аналитика
+                и Premium-инструменты.
+            </p>
+
+        </div>
+
+
+        <div class="premium-faq-item">
+
+            <h3>
+                Можно ли пользоваться StudentHub бесплатно?
+            </h3>
+
+            <p>
+                Да. Основные функции платформы
+                остаются доступными бесплатно.
+            </p>
+
+        </div>
+
+
+        <div class="premium-faq-item">
+
+            <h3>
+                Сейчас происходит настоящее списание?
+            </h3>
+
+            <p>
+                Нет. Эта версия содержит
+                демонстрационную активацию.
+                Реальную оплату подключим отдельно.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

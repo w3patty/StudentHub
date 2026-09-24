@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI-помощник — StudentHub
+{% endblock %}
+
+{% block content %}
+
+<div class="ai-page">
+
+    <div class="ai-intro">
+
+        <div class="badge">
+            ✦ StudentHub AI
+        </div>
+
+        <h1>
+            Твой учебный
+            <span>AI-помощник</span>
+        </h1>
+
+        <p>
+            Задавай вопросы, разбирай сложные темы,
+            решай учебные задачи и готовься к экзаменам.
+        </p>
+
+    </div>
+
+
+    <section class="ai-chat">
+
+        <div class="ai-chat-head">
+
+            <div class="ai-avatar">
+                ✨
+            </div>
+
+            <div>
+
+                <h2>
+                    StudentHub AI
+                </h2>
+
+                <span>
+                    ● Готов помочь
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="messages">
+
+            <div class="message bot-message">
+
+                <div class="message-avatar">
+                    🤖
+                </div>
+
+                <div class="bubble">
+
+                    Привет, {{ user }}! 👋
+
+                    Я твой AI-помощник.
+
+                    Можешь попросить меня объяснить
+                    учебную тему, помочь разобраться
+                    с задачей или составить план подготовки.
+
+                </div>
+
+            </div>
+
+
+            {% if question %}
+
+                <div class="message user-message">
+
+                    <div class="bubble">
+                        {{ question }}
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+            {% if answer %}
+
+                <div class="message bot-message">
+
+                    <div class="message-avatar">
+                        🤖
+                    </div>
+
+                    <div class="bubble">
+                        {{ answer }}
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        {% if error %}
+
+            <div class="ai-error">
+                ⚠️ {{ error }}
+            </div>
+
+        {% endif %}
+
+
+        <div class="suggestions">
+
+            <button
+                type="button"
+                onclick="setQuestion(
+                    'Объясни мне эту тему простыми словами'
+                )">
+
+                📚 Объясни тему
+
+            </button>
+
+
+            <button
+                type="button"
+                onclick="setQuestion(
+                    'Помоги мне решить учебную задачу и объясни ход решения'
+                )">
+
+                🧠 Помоги с задачей
+
+            </button>
+
+
+            <button
+                type="button"
+                onclick="setQuestion(
+                    'Составь мне план подготовки к экзамену'
+                )">
+
+                📅 План подготовки
+
+            </button>
+
+
+            <button
+                type="button"
+                onclick="setQuestion(
+                    'Проведи небольшой тест по выбранной мной теме'
+                )">
+
+                📝 Проведи тест
+
+            </button>
+
+        </div>
+
+
+        <form
+            method="POST"
+            action="/ai"
+            class="ai-input">
+
+            <textarea
+                id="question"
+                name="question"
+                placeholder="Напиши вопрос для AI..."
+                required></textarea>
+
+
+            <button
+                type="submit"
+                class="send-btn">
+
+                Отправить
+                →
+
+            </button>
+
+        </form>
+
+
+        <div class="ai-tip">
+
+            AI может допускать ошибки.
+            Проверяй важную информацию.
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+function setQuestion(text) {
+
+    const input =
+        document.getElementById("question");
+
+    input.value = text;
+
+    input.focus();
+
+}
+
+</script>
+
+{% endblock %}

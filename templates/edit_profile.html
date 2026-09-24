@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block title %}
+Редактирование профиля — StudentHub
+{% endblock %}
+
+{% block content %}
+
+<div class="edit-profile-page">
+
+    <div class="edit-profile-header">
+
+        <a
+            href="/profile"
+            class="edit-back">
+
+            ← Назад в профиль
+
+        </a>
+
+        <div class="badge">
+            ✦ Настройки аккаунта
+        </div>
+
+        <h1>
+            Редактирование профиля
+        </h1>
+
+        <p>
+            Измени данные своего аккаунта.
+        </p>
+
+    </div>
+
+
+    <div class="edit-profile-card">
+
+
+        {% if error %}
+
+        <div class="edit-error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <form
+            method="POST"
+            action="/profile/edit"
+        >
+
+
+            <!-- ЛОГИН -->
+
+            <div class="edit-field">
+
+                <label for="username">
+                    Логин
+                </label>
+
+                <input
+                    id="username"
+                    type="text"
+                    name="username"
+                    value="{{ user['username'] }}"
+                    minlength="3"
+                    required
+                >
+
+                <small>
+                    Минимум 3 символа.
+                </small>
+
+            </div>
+
+
+            <div class="edit-divider"></div>
+
+
+            <!-- ТЕКУЩИЙ ПАРОЛЬ -->
+
+            <div class="edit-field">
+
+                <label for="current_password">
+                    Текущий пароль
+                </label>
+
+                <input
+                    id="current_password"
+                    type="password"
+                    name="current_password"
+                    placeholder="Введите текущий пароль"
+                    required
+                >
+
+                <small>
+                    Он нужен для подтверждения изменений.
+                </small>
+
+            </div>
+
+
+            <!-- НОВЫЙ ПАРОЛЬ -->
+
+            <div class="edit-field">
+
+                <label for="new_password">
+                    Новый пароль
+                    <span>(необязательно)</span>
+                </label>
+
+                <input
+                    id="new_password"
+                    type="password"
+                    name="new_password"
+                    placeholder="Введите новый пароль"
+                    minlength="6"
+                >
+
+                <small>
+                    Оставь поле пустым, если не хочешь менять пароль.
+                </small>
+
+            </div>
+
+
+            <!-- ПОВТОР ПАРОЛЯ -->
+
+            <div class="edit-field">
+
+                <label for="repeat_password">
+                    Повтор нового пароля
+                </label>
+
+                <input
+                    id="repeat_password"
+                    type="password"
+                    name="repeat_password"
+                    placeholder="Повтори новый пароль"
+                    minlength="6"
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="edit-save-button">
+
+                Сохранить изменения
+
+            </button>
+
+
+            <a
+                href="/profile"
+                class="edit-cancel">
+
+                Отмена
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+        StudentHub
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<header class="header">
+
+    <!-- ЛОГОТИП -->
+
+    <a href="/" class="logo">
+        Student<span>Hub</span>
+    </a>
+
+
+    <!-- НАВИГАЦИЯ -->
+
+    <nav>
+
+        <a href="/">
+            Главная
+        </a>
+
+
+        {% if session.get("user_id") %}
+
+            <a href="/dashboard">
+                Кабинет
+            </a>
+
+            <a href="/tasks">
+                Задания
+            </a>
+            <a href="/earn">
+             💰 Заработок
+            </a>
+            <a href="/premium">
+               💎 Premium
+            </a>
+            <a href="/ai">
+                🤖 AI
+            </a>
+
+            <a href="/profile">
+                Профиль
+            </a>
+
+        {% endif %}
+
+
+        <!-- ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ -->
+
+        <button
+            id="themeToggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Переключить тему"
+        >
+            🌙
+        </button>
+
+
+        <!-- ВЫХОД / ВХОД -->
+
+        {% if session.get("user_id") %}
+
+            <a href="/logout">
+                Выйти
+            </a>
+
+        {% else %}
+
+            <a href="/login">
+                Войти
+            </a>
+
+            <a
+                href="/register"
+                class="nav-register"
+            >
+                Регистрация
+            </a>
+
+        {% endif %}
+
+    </nav>
+
+</header>
+
+
+<!-- ОСНОВНОЙ КОНТЕНТ -->
+
+<main>
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+
+<!-- ПЕРЕКЛЮЧЕНИЕ ТЕМЫ -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const themeButton =
+        document.getElementById("themeToggle");
+
+
+    const savedTheme =
+        localStorage.getItem("studenthub-theme");
+
+
+    /*
+        Если ранее была выбрана
+        светлая тема
+    */
+
+    if (savedTheme === "light") {
+
+        document.body.classList.add(
+            "light-theme"
+        );
+
+    }
+
+
+    /*
+        Обновляем иконку кнопки
+    */
+
+    function updateThemeButton() {
+
+        if (!themeButton) {
+            return;
+        }
+
+
+        const isLight =
+            document.body.classList.contains(
+                "light-theme"
+            );
+
+
+        if (isLight) {
+
+            themeButton.textContent = "☀️";
+
+            themeButton.title =
+                "Включить тёмную тему";
+
+        } else {
+
+            themeButton.textContent = "🌙";
+
+            themeButton.title =
+                "Включить светлую тему";
+
+        }
+
+    }
+
+
+    updateThemeButton();
+
+
+    /*
+        Обработка переключения темы
+    */
+
+    if (themeButton) {
+
+        themeButton.addEventListener(
+            "click",
+            function () {
+
+                document.body.classList.toggle(
+                    "light-theme"
+                );
+
+
+                const isLight =
+                    document.body.classList.contains(
+                        "light-theme"
+                    );
+
+
+                localStorage.setItem(
+                    "studenthub-theme",
+                    isLight
+                        ? "light"
+                        : "dark"
+                );
+
+
+                updateThemeButton();
+
+            }
+        );
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>

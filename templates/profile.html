@@ -1,0 +1,345 @@
+{% extends "base.html" %}
+
+{% block title %}
+Профиль — StudentHub
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-title">
+
+        <div class="badge">
+            ✦ Личный профиль
+        </div>
+
+        <h1>
+            Мой профиль
+        </h1>
+
+        <p>
+            Твоя информация и учебная статистика.
+        </p>
+
+    </div>
+
+
+    <div class="profile-layout">
+
+
+        <!-- ЛЕВАЯ КАРТОЧКА ПРОФИЛЯ -->
+
+        <section class="profile-user-card">
+
+            <div class="profile-avatar">
+                {{ user["username"][0]|upper }}
+            </div>
+
+            <h2>
+                {{ user["username"] }}
+            </h2>
+
+            <div class="profile-user-status">
+                ● Аккаунт активен
+            </div>
+
+
+            <div class="profile-divider"></div>
+
+
+            <div class="profile-details">
+
+                <div class="profile-detail">
+
+                    <span>
+                        Логин
+                    </span>
+
+                    <strong>
+                        {{ user["username"] }}
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-detail">
+
+                    <span>
+                        ID аккаунта
+                    </span>
+
+                    <strong>
+                        #{{ user["id"] }}
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-detail">
+
+                    <span>
+                        Платформа
+                    </span>
+
+                    <strong>
+                        StudentHub
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- КНОПКА РЕДАКТИРОВАНИЯ -->
+
+            <a
+                href="/profile/edit"
+                class="profile-edit-button">
+
+                ✎ Редактировать профиль
+
+            </a>
+
+
+            <!-- ВЫХОД -->
+
+            <a
+                href="/logout"
+                class="profile-exit">
+
+                Выйти из аккаунта
+
+            </a>
+
+        </section>
+
+
+        <!-- ПРАВАЯ ЧАСТЬ -->
+
+        <div class="profile-main">
+
+
+            <!-- СТАТИСТИКА -->
+
+            <div class="profile-stat-grid">
+
+                <div class="profile-stat-card">
+
+                    <div class="profile-stat-icon">
+                        📚
+                    </div>
+
+                    <div class="profile-stat-text">
+
+                        <span>
+                            Всего заданий
+                        </span>
+
+                        <strong>
+                            {{ total_tasks }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-stat-card">
+
+                    <div class="profile-stat-icon">
+                        ✓
+                    </div>
+
+                    <div class="profile-stat-text">
+
+                        <span>
+                            Выполнено
+                        </span>
+
+                        <strong>
+                            {{ completed_tasks }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-stat-card">
+
+                    <div class="profile-stat-icon">
+                        ⏳
+                    </div>
+
+                    <div class="profile-stat-text">
+
+                        <span>
+                            Осталось
+                        </span>
+
+                        <strong>
+                            {{ remaining_tasks }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ПРОГРЕСС -->
+
+            <section class="profile-progress">
+
+                <div class="profile-progress-top">
+
+                    <div>
+
+                        <span>
+                            Учебный прогресс
+                        </span>
+
+                        <h2>
+                            {{ progress }}%
+                        </h2>
+
+                    </div>
+
+
+                    <div class="profile-progress-circle">
+                        {{ progress }}%
+                    </div>
+
+                </div>
+
+
+                <div class="profile-progress-track">
+
+                    <div
+                        class="profile-progress-value"
+                        style="width: {{ progress }}%;">
+                    </div>
+
+                </div>
+
+
+                <p>
+                    Прогресс обновляется автоматически после выполнения заданий.
+                </p>
+
+            </section>
+
+
+            <!-- БЫСТРЫЕ ДЕЙСТВИЯ -->
+
+            <section class="profile-actions">
+
+                <div class="profile-section-title">
+
+                    <h2>
+                        Быстрые действия
+                    </h2>
+
+                    <p>
+                        Продолжи обучение прямо сейчас.
+                    </p>
+
+                </div>
+
+
+                <div class="profile-action-list">
+
+
+                    <a
+                        href="/dashboard"
+                        class="profile-action-item">
+
+                        <div class="profile-action-icon">
+                            🏠
+                        </div>
+
+                        <div class="profile-action-content">
+
+                            <strong>
+                                Учебный кабинет
+                            </strong>
+
+                            <span>
+                                Посмотреть свой прогресс
+                            </span>
+
+                        </div>
+
+                        <div class="profile-arrow">
+                            →
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="/tasks"
+                        class="profile-action-item">
+
+                        <div class="profile-action-icon">
+                            📝
+                        </div>
+
+                        <div class="profile-action-content">
+
+                            <strong>
+                                Мои задания
+                            </strong>
+
+                            <span>
+                                Добавить или выполнить задание
+                            </span>
+
+                        </div>
+
+                        <div class="profile-arrow">
+                            →
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="/ai"
+                        class="profile-action-item">
+
+                        <div class="profile-action-icon">
+                            🤖
+                        </div>
+
+                        <div class="profile-action-content">
+
+                            <strong>
+                                AI-помощник
+                            </strong>
+
+                            <span>
+                                Получить помощь в обучении
+                            </span>
+
+                        </div>
+
+                        <div class="profile-arrow">
+                            →
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

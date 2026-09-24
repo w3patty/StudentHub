@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+
+{% block title %}
+Кабинет — StudentHub
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-page">
+
+    <div class="dashboard-head">
+
+        <div>
+
+            <div class="badge">
+                ✦ Личный кабинет
+            </div>
+
+            <h1>
+                Привет, {{ user }} 👋
+            </h1>
+
+            <p>
+                Твоя персональная учебная среда.
+            </p>
+
+        </div>
+
+
+        <a
+            href="/tasks"
+            class="primary-btn">
+
+            + Добавить задание
+
+        </a>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📝
+            </div>
+
+            <span>
+                Всего заданий
+            </span>
+
+            <strong>
+                {{ total_tasks }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <span>
+                Выполнено
+            </span>
+
+            <strong>
+                {{ completed_tasks }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⏳
+            </div>
+
+            <span>
+                Осталось
+            </span>
+
+            <strong>
+                {{ remaining_tasks }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card accent-stat">
+
+            <div class="stat-icon">
+                📊
+            </div>
+
+            <span>
+                Прогресс
+            </span>
+
+            <strong>
+                {{ progress }}%
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+
+        <section class="dashboard-panel">
+
+            <div class="panel-head">
+
+                <div>
+
+                    <h2>
+                        Мои задания
+                    </h2>
+
+                    <p>
+                        Последние задания
+                    </p>
+
+                </div>
+
+                <a href="/tasks">
+                    Все →
+                </a>
+
+            </div>
+
+
+            {% if recent_tasks %}
+
+                <div class="task-list">
+
+                    {% for task in recent_tasks %}
+
+                        <div
+                            class="dashboard-task
+                            {% if task['completed'] %}
+                            completed
+                            {% endif %}">
+
+                            <div>
+
+                                <h3>
+                                    {{ task['title'] }}
+                                </h3>
+
+                                {% if task['subject'] %}
+
+                                    <span>
+                                        {{ task['subject'] }}
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            {% if task['completed'] %}
+
+                                <div class="task-status done">
+                                    ✓ Выполнено
+                                </div>
+
+                            {% else %}
+
+                                <div class="task-status">
+                                    В процессе
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        Пока нет заданий
+                    </h3>
+
+                    <p>
+                        Добавь первое задание,
+                        чтобы начать отслеживать прогресс.
+                    </p>
+
+                    <a
+                        href="/tasks"
+                        class="primary-btn">
+
+                        Добавить задание
+
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <section class="dashboard-panel progress-panel">
+
+            <div class="panel-head">
+
+                <div>
+
+                    <h2>
+                        Твой прогресс
+                    </h2>
+
+                    <p>
+                        Выполнение заданий
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="big-progress">
+
+                <strong>
+                    {{ progress }}%
+                </strong>
+
+                <span>
+                    выполнено
+                </span>
+
+            </div>
+
+
+            <div class="progress-track">
+
+                <div
+                    class="progress-fill"
+                    style="width: {{ progress }}%;">
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-info">
+
+                <span>
+                    {{ completed_tasks }} выполнено
+                </span>
+
+                <span>
+                    {{ remaining_tasks }} осталось
+                </span>
+
+            </div>
+
+
+            <a
+                href="/ai"
+                class="ai-card">
+
+                <div class="ai-card-icon">
+                    🤖
+                </div>
+
+                <div>
+
+                    <strong>
+                        Спросить AI
+                    </strong>
+
+                    <p>
+                        Получи помощь с учёбой
+                    </p>
+
+                </div>
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+        </section>
+
+    </div>
+
+</div>
+
+{% endblock %}

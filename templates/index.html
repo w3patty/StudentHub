@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+
+{% block title %}
+StudentHub — учебная платформа
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <div class="badge">
+            ✦ Твоя персональная учебная платформа
+        </div>
+
+        <h1>
+            Учись проще.
+            <span>Успевай больше.</span>
+        </h1>
+
+        <p>
+            StudentHub помогает организовать задания,
+            следить за прогрессом и получать помощь
+            от AI в одном месте.
+        </p>
+
+        <div class="buttons">
+
+            {% if session.get("user_id") %}
+
+                <a
+                    href="/dashboard"
+                    class="primary-btn">
+
+                    Открыть кабинет →
+
+                </a>
+
+                <a
+                    href="/ai"
+                    class="secondary-btn">
+
+                    🤖 AI-помощник
+
+                </a>
+
+            {% else %}
+
+                <a
+                    href="/register"
+                    class="primary-btn">
+
+                    Начать бесплатно →
+
+                </a>
+
+                <a
+                    href="/login"
+                    class="secondary-btn">
+
+                    Войти
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="mini-label">
+            StudentHub
+        </div>
+
+        <h2>
+            Твоя учёба
+        </h2>
+
+        <p>
+            Всё необходимое в одном месте.
+        </p>
+
+        <div class="hero-features">
+
+            <div>
+                <span>✓</span>
+                Задания
+            </div>
+
+            <div>
+                <span>✓</span>
+                Прогресс
+            </div>
+
+            <div>
+                <span>✓</span>
+                AI-помощник
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="how-section">
+
+    <div class="section-title">
+
+        <div class="badge">
+            Как это работает
+        </div>
+
+        <h2>
+            Три шага до порядка в учёбе
+        </h2>
+
+        <p>
+            StudentHub помогает превратить
+            хаос из заданий в понятную систему.
+        </p>
+
+    </div>
+
+
+    <div class="how-grid">
+
+        <div class="how-card">
+
+            <div class="number">
+                01
+            </div>
+
+            <h3>
+                Добавь задания
+            </h3>
+
+            <p>
+                Запиши домашние задания,
+                предметы и сроки выполнения.
+            </p>
+
+        </div>
+
+
+        <div class="how-card">
+
+            <div class="number">
+                02
+            </div>
+
+            <h3>
+                Получи помощь AI
+            </h3>
+
+            <p>
+                Спроси AI о сложной теме
+                или попроси объяснить задачу.
+            </p>
+
+        </div>
+
+
+        <div class="how-card">
+
+            <div class="number">
+                03
+            </div>
+
+            <h3>
+                Следи за прогрессом
+            </h3>
+
+            <p>
+                Выполняй задания и автоматически
+                отслеживай свой прогресс.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="features">
+
+    <div class="feature">
+
+        <div class="icon">
+            📝
+        </div>
+
+        <h3>
+            Задания
+        </h3>
+
+        <p>
+            Создавай свои задания,
+            устанавливай предметы и дедлайны.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="icon">
+            🤖
+        </div>
+
+        <h3>
+            AI-помощник
+        </h3>
+
+        <p>
+            Разбирай сложные темы
+            и получай учебную помощь.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="icon">
+            📊
+        </div>
+
+        <h3>
+            Прогресс
+        </h3>
+
+        <p>
+            Выполненные задания автоматически
+            влияют на твой прогресс.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="bottom-cta">
+
+    <h2>
+        Начни организовывать свою учёбу
+    </h2>
+
+    <p>
+        Создай бесплатный аккаунт
+        и попробуй StudentHub.
+    </p>
+
+    <a
+        href="/register"
+        class="primary-btn">
+
+        Создать аккаунт →
+
+    </a>
+
+</section>
+
+{% endblock %}
